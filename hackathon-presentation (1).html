@@ -195,6 +195,7 @@
             text-shadow: 1px 1px 0 #000;
         }
         
+        /* ========== PAGE HEADERS/BANNERS ========== */
         .page-header {
             position: relative;
             height: 200px;
@@ -206,6 +207,57 @@
             text-align: center;
         }
         
+        .page-header-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        
+        .intro-header-bg {
+            background-color: var(--minecraft-water);
+            background-image: linear-gradient(to bottom, var(--minecraft-water) 75%, var(--minecraft-grass) 75%, var(--minecraft-dirt) 80%);
+        }
+        
+        .vision-header-bg {
+            background-color: #a088ff;
+            background-image: linear-gradient(to bottom, #a088ff 75%, var(--minecraft-grass) 75%, var(--minecraft-dirt) 80%);
+        }
+        
+        .problem-header-bg {
+            background-color: #330000;
+            background-image: linear-gradient(to bottom, #330000 50%, #e25822 50%);
+        }
+        
+        .benefits-header-bg {
+            background-color: #355e3b;
+            background-image: linear-gradient(to bottom, #355e3b 75%, var(--minecraft-grass) 75%, var(--minecraft-dirt) 80%);
+        }
+        
+        .solution-header-bg {
+            background-color: #0088cc;
+            background-image: linear-gradient(to bottom, #0088cc 75%, var(--minecraft-grass) 75%, var(--minecraft-dirt) 80%);
+        }
+        
+        .demo-header-bg {
+            background-color: var(--minecraft-water);
+            background-image: linear-gradient(to bottom, var(--minecraft-water) 75%, var(--minecraft-grass) 75%, var(--minecraft-dirt) 80%);
+        }
+        
+        .next-steps-header-bg {
+            background-color: #221d6b;
+            background-image: linear-gradient(to bottom, #221d6b 75%, var(--minecraft-grass) 75%, var(--minecraft-dirt) 80%);
+        }
+        
+        .header-decorator {
+            position: absolute;
+            background-color: white;
+            opacity: 0.8;
+            border-radius: 2px;
+        }
+        
         .page-title {
             font-size: 4em;
             color: #ffffff;
@@ -213,6 +265,8 @@
             margin: 0;
             letter-spacing: 3px;
             text-transform: uppercase;
+            position: relative;
+            z-index: 2;
         }
         
         .page-subtitle {
@@ -220,6 +274,8 @@
             color: #ffffff;
             text-shadow: 2px 2px 0 #000, -2px 2px 0 #000, 2px -2px 0 #000, -2px -2px 0 #000;
             margin-top: 5px;
+            position: relative; 
+            z-index: 2;
         }
         
         .section-title {
@@ -611,6 +667,13 @@
         <!-- Intro Page -->
         <div class="page active" id="intro">
             <div class="page-header">
+                <div class="page-header-bg intro-header-bg">
+                    <!-- Cloud and tree decorations -->
+                    <div class="header-decorator" style="left: 300px; top: 70px; width: 80px; height: 60px;"></div>
+                    <div class="header-decorator" style="left: 300px; top: 60px; width: 80px; height: 10px;"></div>
+                    <div class="header-decorator" style="left: 200px; top: 100px; width: 50px; height: 50px; opacity: 0.5;"></div>
+                    <div class="header-decorator" style="right: 200px; top: 100px; width: 50px; height: 50px; opacity: 0.5;"></div>
+                </div>
                 <div>
                     <h1 class="page-title">CHICKEN JOCKEYS</h1>
                     <p class="page-subtitle">Building team velocity plans, one block at a time</p>
@@ -681,6 +744,12 @@
         <!-- Vision Page -->
         <div class="page" id="vision">
             <div class="page-header">
+                <div class="page-header-bg vision-header-bg">
+                    <!-- Star decorations -->
+                    <div class="header-decorator" style="left: 50px; top: 40px; width: 20px; height: 20px; border-radius: 50%;"></div>
+                    <div class="header-decorator" style="left: 150px; top: 50px; width: 30px; height: 30px; border-radius: 50%;"></div>
+                    <div class="header-decorator" style="right: 100px; top: 45px; width: 25px; height: 25px; border-radius: 50%;"></div>
+                </div>
                 <div>
                     <h1 class="page-title">THE VISION</h1>
                     <p class="page-subtitle">User-Centered Solution</p>
@@ -839,6 +908,12 @@
         <!-- Problem Statement Page -->
         <div class="page" id="problem">
             <div class="page-header">
+                <div class="page-header-bg problem-header-bg">
+                    <!-- Lava bubble decorations -->
+                    <div class="header-decorator" style="left: 50px; top: 60px; width: 20px; height: 20px; border-radius: 50%; background-color: #fed45b;"></div>
+                    <div class="header-decorator" style="left: 350px; top: 40px; width: 15px; height: 15px; border-radius: 50%; background-color: #f8a845;"></div>
+                    <div class="header-decorator" style="right: 150px; top: 70px; width: 25px; height: 25px; border-radius: 50%; background-color: #f78b31;"></div>
+                </div>
                 <div>
                     <h1 class="page-title">THE PROBLEM</h1>
                     <p class="page-subtitle">Current Challenges</p>
@@ -913,6 +988,12 @@
         <!-- Benefits Page -->
         <div class="page" id="benefits">
             <div class="page-header">
+                <div class="page-header-bg benefits-header-bg">
+                    <!-- Tree and sun decorations -->
+                    <div class="header-decorator" style="left: 100px; top: 80px; width: 50px; height: 50px; background-color: #4f7942;"></div>
+                    <div class="header-decorator" style="left: 100px; top: 60px; width: 50px; height: 20px; background-color: #73a743;"></div>
+                    <div class="header-decorator" style="right: 150px; top: 70px; width: 25px; height: 25px; border-radius: 50%; background-color: #ffff00;"></div>
+                </div>
                 <div>
                     <h1 class="page-title">BENEFITS</h1>
                     <p class="page-subtitle">Value Creation</p>
@@ -999,6 +1080,13 @@
         <!-- Solution Page -->
         <div class="page" id="solution">
             <div class="page-header">
+                <div class="page-header-bg solution-header-bg">
+                    <!-- Computer and cloud decorations -->
+                    <div class="header-decorator" style="left: 300px; top: 70px; width: 80px; height: 60px; background-color: #b3b3b3;"></div>
+                    <div class="header-decorator" style="left: 300px; top: 60px; width: 80px; height: 10px; background-color: #d9d9d9;"></div>
+                    <div class="header-decorator" style="left: 320px; top: 80px; width: 15px; height: 15px; background-color: #ffff00;"></div>
+                    <div class="header-decorator" style="left: 350px; top: 80px; width: 15px; height: 15px; background-color: #ffff00;"></div>
+                </div>
                 <div>
                     <h1 class="page-title">OUR SOLUTION</h1>
                     <p class="page-subtitle">Velocity Planning Reimagined</p>
@@ -1054,6 +1142,16 @@
         <!-- Demo Page -->
         <div class="page" id="demo">
             <div class="page-header">
+                <div class="page-header-bg demo-header-bg">
+                    <!-- Tree and cloud decorations -->
+                    <div class="header-decorator" style="left: 100px; top: 100px; width: 50px; height: 50px; background-color: #866043;"></div>
+                    <div class="header-decorator" style="left: 100px; top: 50px; width: 50px; height: 50px; background-color: #4f7942;"></div>
+                    <div class="header-decorator" style="right: 100px; top: 100px; width: 50px; height: 50px; background-color: #866043;"></div>
+                    <div class="header-decorator" style="right: 100px; top: 50px; width: 50px; height: 50px; background-color: #4f7942;"></div>
+                    <!-- Clouds -->
+                    <div class="header-decorator" style="left: 300px; top: 40px; width: 20px; height: 20px; border-radius: 50%;"></div>
+                    <div class="header-decorator" style="left: 350px; top: 50px; width: 30px; height: 30px; border-radius: 50%; opacity: 0.8;"></div>
+                </div>
                 <div>
                     <h1 class="page-title">DEMO</h1>
                     <p class="page-subtitle">See It In Action</p>
@@ -1079,6 +1177,14 @@
         <!-- Next Steps Page -->
         <div class="page" id="next-steps">
             <div class="page-header">
+                <div class="page-header-bg next-steps-header-bg">
+                    <!-- Star decorations -->
+                    <div class="header-decorator" style="left: 400px; top: 50px; width: 30px; height: 30px; border-radius: 50%;"></div>
+                    <!-- Moon lines -->
+                    <div class="header-decorator" style="left: 390px; top: 50px; width: 20px; height: 80px; opacity: 0.9;"></div>
+                    <div class="header-decorator" style="left: 420px; top: 60px; width: 50px; height: 10px; opacity: 0.8;"></div>
+                    <div class="header-decorator" style="left: 450px; top: 80px; width: 30px; height: 10px; opacity: 0.7;"></div>
+                </div>
                 <div>
                     <h1 class="page-title">NEXT STEPS</h1>
                     <p class="page-subtitle">Future Development</p>
