@@ -4,7 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Minecraft-Themed Presentation</title>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <style>
+        /* ========== FONT FACE FALLBACK ========== */
+        @font-face {
+            font-family: 'MinecraftFont';
+            src: local('VT323'), url('https://fonts.googleapis.com/css2?family=VT323&display=swap') format('woff2');
+            font-display: swap;
+        }
+        
+        /* ========== VARIABLES ========== */
         :root {
             --minecraft-green: #5e8c31;
             --minecraft-brown: #825432;
@@ -22,65 +32,68 @@
             --minecraft-cloud: #ffffff;
         }
         
+        /* ========== RESET & BASE STYLES ========== */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'MinecraftFont', 'VT323', monospace;
-        }
-        
-        @font-face {
-            font-family: 'MinecraftFont';
-            src: url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/webfonts/fa-solid-900.woff2') format('woff2');
-            font-weight: normal;
-            font-style: normal;
+            font-family: 'VT323', 'MinecraftFont', 'Press Start 2P', monospace;
         }
         
         body {
             line-height: 1.6;
             overflow-x: hidden;
             background-color: var(--minecraft-sky);
-            image-rendering: pixelated;
-            background-image: 
-                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><rect width="16" height="16" fill="%238eb9fc"/></svg>');
-            position: relative;
             color: #ffffff;
             text-shadow: 1px 1px 0 #000, -1px 1px 0 #000, 1px -1px 0 #000, -1px -1px 0 #000;
+            position: relative;
+        }
+        
+        /* ========== MINECRAFT ENVIRONMENT ========== */
+        /* Minecraft Sky Background */
+        .minecraft-sky {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: var(--minecraft-sky);
+            z-index: -3;
         }
         
         /* Minecraft Clouds */
-        body::before {
+        .minecraft-clouds {
             content: "";
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
             height: 200px;
-            background-image: 
-                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="320" height="120" viewBox="0 0 320 120"><rect x="40" y="40" width="80" height="40" fill="%23fff" fill-opacity="0.7"/><rect x="120" y="40" width="160" height="40" fill="%23fff" fill-opacity="0.7"/><rect x="200" y="80" width="80" height="40" fill="%23fff" fill-opacity="0.7"/><rect x="0" y="80" width="120" height="40" fill="%23fff" fill-opacity="0.7"/></svg>');
-            background-repeat: repeat-x;
-            background-size: 640px 240px;
-            z-index: -1;
+            background-color: transparent;
+            z-index: -2;
             animation: cloudMove 120s linear infinite;
         }
         
-        @keyframes cloudMove {
-            0% { background-position: 0px 0px; }
-            100% { background-position: 640px 0px; }
-        }
-        
         /* Minecraft Ground */
-        body::after {
+        .minecraft-ground {
             content: "";
             position: fixed;
             bottom: 0;
             left: 0;
             right: 0;
             height: 120px;
-            background-image: 
-                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="160" height="80" viewBox="0 0 160 80"><rect y="0" width="160" height="16" fill="%2373a743"/><rect y="16" width="160" height="64" fill="%23866043"/><rect x="0" y="16" width="16" height="16" fill="%237c5638"/><rect x="32" y="16" width="16" height="16" fill="%237c5638"/><rect x="64" y="16" width="16" height="16" fill="%237c5638"/><rect x="96" y="16" width="16" height="16" fill="%237c5638"/><rect x="128" y="16" width="16" height="16" fill="%237c5638"/><rect x="16" y="32" width="16" height="16" fill="%237c5638"/><rect x="48" y="32" width="16" height="16" fill="%237c5638"/><rect x="80" y="32" width="16" height="16" fill="%237c5638"/><rect x="112" y="32" width="16" height="16" fill="%237c5638"/><rect x="144" y="32" width="16" height="16" fill="%237c5638"/><rect x="0" y="48" width="16" height="16" fill="%237c5638"/><rect x="32" y="48" width="16" height="16" fill="%237c5638"/><rect x="64" y="48" width="16" height="16" fill="%237c5638"/><rect x="96" y="48" width="16" height="16" fill="%237c5638"/><rect x="128" y="48" width="16" height="16" fill="%237c5638"/><rect x="16" y="64" width="16" height="16" fill="%237c5638"/><rect x="48" y="64" width="16" height="16" fill="%237c5638"/><rect x="80" y="64" width="16" height="16" fill="%237c5638"/><rect x="112" y="64" width="16" height="16" fill="%237c5638"/><rect x="144" y="64" width="16" height="16" fill="%237c5638"/></svg>');
-            background-repeat: repeat-x;
-            background-size: 320px 160px;
+            background-color: var(--minecraft-grass);
+            z-index: -2;
+        }
+        
+        .minecraft-dirt {
+            content: "";
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 100px;
+            background-color: var(--minecraft-dirt);
             z-index: -1;
         }
         
@@ -90,11 +103,49 @@
             bottom: 120px;
             width: 80px;
             height: 120px;
-            background-image: 
-                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="80" height="120" viewBox="0 0 80 120"><rect x="32" y="80" width="16" height="40" fill="%23a06d38"/><rect x="16" y="32" width="48" height="48" fill="%234f7942"/><rect x="8" y="48" width="64" height="32" fill="%234f7942"/><rect x="24" y="16" width="32" height="16" fill="%234f7942"/></svg>');
-            background-repeat: no-repeat;
-            background-size: contain;
             z-index: -1;
+        }
+        
+        .tree-trunk {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 16px;
+            height: 40px;
+            background-color: var(--minecraft-wood);
+        }
+        
+        .tree-leaves {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 48px;
+            height: 48px;
+            background-color: var(--minecraft-leaves);
+        }
+        
+        .tree-leaves:before {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 64px;
+            height: 32px;
+            background-color: var(--minecraft-leaves);
+        }
+        
+        .tree-leaves:after {
+            content: "";
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 32px;
+            height: 16px;
+            background-color: var(--minecraft-leaves);
         }
         
         .tree:nth-child(1) {
@@ -117,12 +168,12 @@
             transform: scale(1.1) scaleX(-1);
         }
         
-        .pixel-border {
-            border: 4px solid var(--minecraft-stone);
-            box-shadow: 0 0 0 4px var(--minecraft-dark);
-            image-rendering: pixelated;
+        @keyframes cloudMove {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(100%); }
         }
         
+        /* ========== LAYOUT COMPONENTS ========== */
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -131,49 +182,47 @@
             z-index: 1;
         }
         
-        header {
-            text-align: center;
-            padding: 30px 0;
-            margin-bottom: 30px;
-            border-bottom: 4px solid var(--minecraft-grass);
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><rect width="32" height="32" fill="%23373737"/><rect width="16" height="16" fill="%23303030"/><rect x="16" y="16" width="16" height="16" fill="%23303030"/></svg>');
-            background-repeat: repeat;
-            image-rendering: pixelated;
-            color: white;
-            text-shadow: 2px 2px 0 #000;
-            background-color: rgba(0, 0, 0, 0.7);
-        }
-        
-        header h1 {
-            font-size: 3em;
-            color: var(--minecraft-grass);
-            text-shadow: 3px 3px 0 var(--minecraft-dark);
-            margin-bottom: 10px;
-            letter-spacing: 2px;
-            font-weight: normal;
-            text-transform: uppercase;
-        }
-        
-        header p {
-            font-size: 1.5em;
-            color: var(--minecraft-light);
-            letter-spacing: 1px;
-        }
-        
         .section {
             background-color: rgba(0, 0, 0, 0.7);
             padding: 20px;
             margin-bottom: 30px;
             border-left: 4px solid var(--minecraft-grass);
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><rect width="32" height="32" fill="%23373737"/><rect width="16" height="16" fill="%23303030"/><rect x="16" y="16" width="16" height="16" fill="%23303030"/></svg>');
-            background-repeat: repeat;
+            background-image: linear-gradient(45deg, #373737 25%, #303030 25%, #303030 50%, #373737 50%, #373737 75%, #303030 75%, #303030 100%);
+            background-size: 32px 32px;
             image-rendering: pixelated;
             border: 2px solid var(--minecraft-stone);
             color: white;
             text-shadow: 1px 1px 0 #000;
         }
         
-        .section h2 {
+        .page-header {
+            position: relative;
+            height: 200px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .page-title {
+            font-size: 4em;
+            color: #ffffff;
+            text-shadow: 3px 3px 0 #000, -3px 3px 0 #000, 3px -3px 0 #000, -3px -3px 0 #000;
+            margin: 0;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+        
+        .page-subtitle {
+            font-size: 1.8em;
+            color: #ffffff;
+            text-shadow: 2px 2px 0 #000, -2px 2px 0 #000, 2px -2px 0 #000, -2px -2px 0 #000;
+            margin-top: 5px;
+        }
+        
+        .section-title {
             font-size: 2em;
             color: #ffff55;
             margin-bottom: 20px;
@@ -185,110 +234,7 @@
             text-shadow: 2px 2px 0 #000;
         }
         
-        .team-members {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around;
-            gap: 20px;
-            margin-top: 20px;
-        }
-        
-        .team-member {
-            background-color: var(--minecraft-wood);
-            padding: 15px;
-            border: 4px solid #000;
-            border-style: solid;
-            border-width: 4px 4px 4px 4px;
-            border-color: #555 #000 #000 #555;
-            text-align: center;
-            width: 200px;
-            box-shadow: inset 2px 2px 0 rgba(255,255,255,0.2), inset -2px -2px 0 rgba(0,0,0,0.4);
-            image-rendering: pixelated;
-            color: white;
-            text-shadow: 1px 1px 0 #000;
-        }
-        
-        .team-member h3 {
-            color: #ffff55;
-            text-shadow: 1px 1px 0 #000;
-        }
-        
-        .team-member p {
-            color: #ffffff;
-            text-shadow: 1px 1px 0 #000;
-        }
-        
-        .storyboard {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
-        }
-        
-        .story-panel {
-            background-color: rgba(135, 206, 250, 0.3);
-            padding: 15px;
-            border: 2px solid #87CEFA;
-        }
-        
-        .story-panel h3 {
-            color: #6FC0FF;
-            text-shadow: 1px 1px 0 #000;
-            margin-bottom: 10px;
-        }
-        
-        .current-process {
-            list-style-type: none;
-        }
-        
-        .current-process li {
-            margin-bottom: 10px;
-            padding: 10px;
-            background-color: rgba(0, 0, 0, 0.3);
-            border-left: 3px solid var(--minecraft-gray);
-        }
-        
-        .benefits {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
-        }
-        
-        .benefit-card {
-            background-color: rgba(94, 140, 49, 0.2);
-            padding: 15px;
-            border: 4px solid #000;
-            border-style: solid;
-            border-width: 4px 4px 4px 4px;
-            border-color: #555 #000 #000 #555;
-            text-align: center;
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><rect width="16" height="16" fill="%23506a33"/><rect width="8" height="8" fill="%23445a2a"/><rect x="8" y="8" width="8" height="8" fill="%23445a2a"/></svg>');
-            background-repeat: repeat;
-            box-shadow: inset 2px 2px 0 rgba(255,255,255,0.2), inset -2px -2px 0 rgba(0,0,0,0.4);
-            color: white;
-            text-shadow: 1px 1px 0 #000;
-        }
-        
-        .benefit-card h3 {
-            color: #ffff55;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 0 rgba(0,0,0,0.5);
-            letter-spacing: 1px;
-        }
-        
-        .benefit-icon {
-            font-size: 2em;
-            margin-bottom: 10px;
-        }
-        
-        .buttons {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 30px;
-        }
-        
+        /* ========== COMPONENT STYLES ========== */
         .minecraft-button {
             background-color: var(--minecraft-grass);
             color: white;
@@ -307,6 +253,7 @@
             image-rendering: pixelated;
             letter-spacing: 1px;
             text-shadow: 1px 1px 0 #000;
+            display: inline-block;
         }
         
         .minecraft-button:hover {
@@ -319,34 +266,6 @@
             box-shadow: inset -2px -2px 0 rgba(255,255,255,0.2), inset 2px 2px 0 rgba(0,0,0,0.4);
             transform: translate(2px, 2px);
             border-color: #2d5918 #6faa3a #6faa3a #2d5918;
-        }
-        
-        .next-steps {
-            background-color: rgba(156, 157, 151, 0.2);
-            padding: 20px;
-            margin-top: 30px;
-            border: 2px solid var(--minecraft-gray);
-        }
-        
-        .next-steps h2 {
-            color: var(--minecraft-gray);
-            margin-bottom: 15px;
-        }
-        
-        .next-steps ul {
-            list-style-type: square;
-            padding-left: 20px;
-        }
-        
-        .next-steps li {
-            margin-bottom: 10px;
-        }
-
-        /* Navigation */
-        .navigation {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 20px;
         }
         
         .nav-button {
@@ -380,124 +299,137 @@
             border-color: #333 #999 #999 #333;
         }
         
-        .page {
-            display: none;
+        .navigation {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
         }
         
-        .page.active {
-            display: block;
-        }
-
-        /* Benefits diagram */
-        .benefits-diagram {
-            position: relative;
-            margin: 40px auto;
-            max-width: 800px;
-        }
-        
-        .central-node {
-            background-color: var(--minecraft-grass);
-            color: white;
+        .benefit-card {
+            background-color: rgba(94, 140, 49, 0.2);
             padding: 15px;
-            text-align: center;
-            width: 200px;
-            margin: 0 auto 30px auto;
-            position: relative;
-            z-index: 2;
             border: 4px solid #000;
             border-style: solid;
             border-width: 4px 4px 4px 4px;
-            border-color: #6faa3a #2d5918 #2d5918 #6faa3a;
-            box-shadow: inset 2px 2px 0 rgba(255,255,255,0.2), inset -2px -2px 0 rgba(0,0,0,0.4);
-            image-rendering: pixelated;
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><rect width="16" height="16" fill="%2373a743"/><rect width="8" height="8" fill="%2367973c"/><rect x="8" y="8" width="8" height="8" fill="%2367973c"/></svg>');
+            border-color: #555 #000 #000 #555;
+            text-align: center;
+            background-image: linear-gradient(45deg, #506a33 25%, #445a2a 25%, #445a2a 50%, #506a33 50%, #506a33 75%, #445a2a 75%, #445a2a 100%);
+            background-size: 16px 16px;
             background-repeat: repeat;
+            box-shadow: inset 2px 2px 0 rgba(255,255,255,0.2), inset -2px -2px 0 rgba(0,0,0,0.4);
+            color: white;
             text-shadow: 1px 1px 0 #000;
+            margin-bottom: 20px;
         }
         
-        .central-node h3 {
+        .benefit-card h3 {
             color: #ffff55;
-            text-shadow: 1px 1px 0 #000;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 0 rgba(0,0,0,0.5);
+            letter-spacing: 1px;
         }
         
-        .benefits-row {
-            display: flex;
-            justify-content: space-between;
-            position: relative;
+        .benefit-icon {
+            font-size: 2em;
+            margin-bottom: 10px;
         }
         
-        .benefit-node {
+        .team-member {
             background-color: var(--minecraft-wood);
             padding: 15px;
-            width: 180px;
-            text-align: center;
-            position: relative;
-            z-index: 2;
             border: 4px solid #000;
             border-style: solid;
             border-width: 4px 4px 4px 4px;
-            border-color: #b3825c #603b1f #603b1f #b3825c;
+            border-color: #555 #000 #000 #555;
+            text-align: center;
             box-shadow: inset 2px 2px 0 rgba(255,255,255,0.2), inset -2px -2px 0 rgba(0,0,0,0.4);
             image-rendering: pixelated;
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><rect width="16" height="16" fill="%23a0724e"/><rect width="8" height="8" fill="%23956743"/><rect x="8" y="8" width="8" height="8" fill="%23956743"/></svg>');
-            background-repeat: repeat;
             color: white;
             text-shadow: 1px 1px 0 #000;
+            margin-bottom: 20px;
         }
         
-        .benefit-node h4 {
+        .team-member h3 {
             color: #ffff55;
             text-shadow: 1px 1px 0 #000;
         }
         
-        .connections {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
+        .team-member p {
+            color: #ffffff;
+            text-shadow: 1px 1px 0 #000;
         }
         
-        /* Minecraft-style connections */
-        .connection-line {
-            position: absolute;
-            height: 8px;
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 8 8"><rect width="8" height="8" fill="%23555555"/><rect width="4" height="4" fill="%23666666"/><rect x="4" y="4" width="4" height="4" fill="%23666666"/></svg>');
-            background-repeat: repeat;
-            image-rendering: pixelated;
-        }
-        
-        .connection-vertical {
-            width: 8px;
-            height: 30px;
-            left: 50%;
-            top: 25px;
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 8 8"><rect width="8" height="8" fill="%23555555"/><rect width="4" height="4" fill="%23666666"/><rect x="4" y="4" width="4" height="4" fill="%23666666"/></svg>');
-            background-repeat: repeat;
-            image-rendering: pixelated;
-        }
-
-        /* Demo storyboard */
-        .demo-storyboard {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-        }
-        
-        .demo-step {
+        .story-panel {
             background-color: rgba(135, 206, 250, 0.3);
             padding: 15px;
             border: 2px solid #87CEFA;
+            margin-bottom: 15px;
         }
         
-        .demo-step h3 {
+        .story-panel h3 {
             color: #6FC0FF;
             text-shadow: 1px 1px 0 #000;
             margin-bottom: 10px;
         }
-
-        /* Progress bar */
+        
+        .current-process {
+            list-style-type: none;
+        }
+        
+        .current-process li {
+            margin-bottom: 10px;
+            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.3);
+            border-left: 3px solid var(--minecraft-gray);
+        }
+        
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+        
+        /* ========== GRID LAYOUTS ========== */
+        .flex-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .flex-grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .storyboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .benefits {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .team-members {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        /* ========== PROGRESS BAR ========== */
         .progress-container {
             position: fixed;
             bottom: 20px;
@@ -523,8 +455,8 @@
         
         .progress-fill {
             background-color: var(--minecraft-grass);
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 8 8"><rect width="8" height="8" fill="%2373a743"/><rect width="4" height="4" fill="%2367973c"/><rect x="4" y="4" width="4" height="4" fill="%2367973c"/></svg>');
-            background-repeat: repeat;
+            background-image: linear-gradient(45deg, #73a743 25%, #67973c 25%, #67973c 50%, #73a743 50%, #73a743 75%, #67973c 75%, #67973c 100%);
+            background-size: 8px 8px;
             height: 100%;
             width: 0%;
             transition: width 0.3s;
@@ -544,39 +476,119 @@
             font-weight: bold;
         }
         
-        /* User personas table */
-        .persona-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
+        /* ========== PAGE DISPLAY ========== */
+        .page {
+            display: none;
         }
         
-        .persona-table th {
-            background-color: var(--minecraft-grass);
-            color: #ffff55;
-            text-shadow: 1px 1px 0 #000;
-            padding: 10px;
-            text-align: left;
-            border: 2px solid #000;
+        .page.active {
+            display: block;
         }
         
-        .persona-table td {
-            padding: 10px;
-            border: 2px solid #555;
-            background-color: rgba(0, 0, 0, 0.3);
+        /* ========== RESPONSIVE STYLES ========== */
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 2.5em;
+            }
+            
+            .page-subtitle {
+                font-size: 1.4em;
+            }
+            
+            .section-title {
+                font-size: 1.6em;
+            }
+            
+            .navigation {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .nav-button {
+                margin-bottom: 10px;
+                width: 80%;
+            }
+            
+            .buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .minecraft-button {
+                width: 80%;
+                text-align: center;
+            }
+            
+            .progress-container {
+                bottom: 10px;
+            }
+            
+            .progress-bar {
+                width: 95%;
+            }
+            
+            .team-members {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .team-member {
+                width: 90%;
+            }
         }
         
-        .persona-table tr:nth-child(even) td {
-            background-color: rgba(0, 0, 0, 0.4);
+        @media (max-width: 480px) {
+            .page-title {
+                font-size: 2em;
+            }
+            
+            .page-subtitle {
+                font-size: 1.2em;
+            }
+            
+            .section {
+                padding: 15px;
+            }
+            
+            .section-title {
+                font-size: 1.4em;
+            }
+            
+            .container {
+                padding: 10px;
+            }
+            
+            .minecraft-button, .nav-button {
+                width: 100%;
+                font-size: 0.9em;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Minecraft Environment -->
+    <div class="minecraft-sky"></div>
+    <div class="minecraft-clouds"></div>
+    <div class="minecraft-ground"></div>
+    <div class="minecraft-dirt"></div>
+    
     <!-- Trees for Minecraft landscape -->
-    <div class="tree"></div>
-    <div class="tree"></div>
-    <div class="tree"></div>
-    <div class="tree"></div>
+    <div class="tree">
+        <div class="tree-trunk"></div>
+        <div class="tree-leaves"></div>
+    </div>
+    <div class="tree">
+        <div class="tree-trunk"></div>
+        <div class="tree-leaves"></div>
+    </div>
+    <div class="tree">
+        <div class="tree-trunk"></div>
+        <div class="tree-leaves"></div>
+    </div>
+    <div class="tree">
+        <div class="tree-trunk"></div>
+        <div class="tree-leaves"></div>
+    </div>
     
     <div class="navigation">
         <button class="nav-button" onclick="showPage('intro')">Intro</button>
@@ -598,35 +610,34 @@
     <div class="container">
         <!-- Intro Page -->
         <div class="page active" id="intro">
-            <div style="position: relative; height: 200px; overflow: hidden; margin-bottom: 20px;">
-                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: url('data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 800 200\'><rect width=\'800\' height=\'200\' fill=\'%233f76e4\'/><rect y=\'150\' width=\'800\' height=\'50\' fill=\'%2373a743\'/><rect y=\'160\' width=\'800\' height=\'40\' fill=\'%23866043\'/><rect x=\'300\' y=\'50\' width=\'80\' height=\'30\' fill=\'%23ffffff\' fill-opacity=\'0.7\'/><rect x=\'400\' y=\'60\' width=\'120\' height=\'30\' fill=\'%23ffffff\' fill-opacity=\'0.7\'/><rect x=\'520\' y=\'40\' width=\'60\' height=\'30\' fill=\'%23ffffff\' fill-opacity=\'0.7\'/><rect x=\'140\' y=\'35\' width=\'90\' height=\'30\' fill=\'%23ffffff\' fill-opacity=\'0.7\'/><rect x=\'200\' y=\'100\' width=\'50\' height=\'50\' fill=\'%23866043\'/><rect x=\'200\' y=\'50\' width=\'50\' height=\'50\' fill=\'%234f7942\'/><rect x=\'550\' y=\'100\' width=\'50\' height=\'50\' fill=\'%23866043\'/><rect x=\'550\' y=\'50\' width=\'50\' height=\'50\' fill=\'%234f7942\'/></svg>'); background-size: cover;"></div>
-                <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;">
-                    <h1 style="font-size: 4em; color: #ffffff; text-shadow: 3px 3px 0 #000, -3px 3px 0 #000, 3px -3px 0 #000, -3px -3px 0 #000; margin: 0; letter-spacing: 3px;">CHICKEN JOCKEYS</h1>
-                    <p style="font-size: 1.8em; color: #ffffff; text-shadow: 2px 2px 0 #000, -2px 2px 0 #000, 2px -2px 0 #000, -2px -2px 0 #000; margin-top: 5px;">Building team velocity plans, one block at a time</p>
+            <div class="page-header">
+                <div>
+                    <h1 class="page-title">CHICKEN JOCKEYS</h1>
+                    <p class="page-subtitle">Building team velocity plans, one block at a time</p>
                 </div>
             </div>
 
             <div class="section">
-                <h2>Team Members</h2>
+                <h2 class="section-title">Team Members</h2>
                 <div style="text-align: center; margin-bottom: 20px;">
-                    <img src="data:image/jpeg;base64,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" alt="Team Photo" style="max-width: 100%; height: auto; border: 4px solid #000; border-color: #555 #000 #000 #555; box-shadow: inset 2px 2px 0 rgba(255,255,255,0.2), inset -2px -2px 0 rgba(0,0,0,0.4);">
-                    <div style="display: flex; justify-content: space-around; margin-top: 15px;">
-                        <div style="text-align: center;">
+                    <img src="data:image/jpeg;base64,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" alt="Team Photo" style="max-width: 100%; height: auto; border: 4px solid #000; border-color: #555 #000 #000 #555; box-shadow: inset 2px 2px 0 rgba(255,255,255,0.2), inset -2px -2px 0 rgba(0,0,0,0.4);">
+                    <div class="flex-grid">
+                        <div style="text-align: center; flex: 1; min-width: 200px;">
                             <h3>Paul</h3>
                             <p>Village Director</p>
                             <small>Product Director guiding the vision</small>
                         </div>
-                        <div style="text-align: center;">
+                        <div style="text-align: center; flex: 1; min-width: 200px;">
                             <h3>Benny</h3>
                             <p>Redstone Developer</p>
                             <small>Expert coder building core functionality</small>
                         </div>
-                        <div style="text-align: center;">
+                        <div style="text-align: center; flex: 1; min-width: 200px;">
                             <h3>Brandon</h3>
                             <p>Command Block Engineer</p>
                             <small>Developer creating advanced systems</small>
                         </div>
-                        <div style="text-align: center;">
+                        <div style="text-align: center; flex: 1; min-width: 200px;">
                             <h3>Matt</h3>
                             <p>Map Cartographer</p>
                             <small>Program Manager organizing the journey</small>
@@ -636,9 +647,9 @@
             </div>
 
             <div class="section">
-                <h2>What is a Velocity Plan?</h2>
-                <div style="display: flex; align-items: center; gap: 20px;">
-                    <div style="flex: 1;">
+                <h2 class="section-title">What is a Velocity Plan?</h2>
+                <div class="flex-grid">
+                    <div style="flex: 1; min-width: 300px;">
                         <p>A velocity plan is a crucial tool for software development teams that helps predict and manage project timelines based on the team's proven capacity to deliver work.</p>
                         <p>Just as Minecraft players need to plan their resources and time to build complex structures, development teams use velocity planning to:</p>
                         <ul style="list-style-type: square; margin-left: 20px;">
@@ -649,8 +660,8 @@
                         </ul>
                     </div>
                     <div style="flex: 0 0 200px; text-align: center;">
-                        <div style="background-color: var(--minecraft-wood); padding: 15px; border: 4px solid #000; border-style: solid; border-width: 4px 4px 4px 4px; border-color: #555 #000 #000 #555; box-shadow: inset 2px 2px 0 rgba(255,255,255,0.2), inset -2px -2px 0 rgba(0,0,0,0.4);">
-                            <h3 style="color: #ffff55; text-shadow: 1px 1px 0 #000;">Velocity</h3>
+                        <div class="benefit-card">
+                            <h3>Velocity</h3>
                             <p style="font-size: 2.5em; margin: 10px 0; color: #ffffff; text-shadow: 2px 2px 0 #000;">⏱️ + 📊</p>
                             <p>Story Points ÷ Time</p>
                         </div>
@@ -659,7 +670,7 @@
             </div>
 
             <div class="section">
-                <h2>Our Mission</h2>
+                <h2 class="section-title">Our Mission</h2>
                 <p>We help Engineering Professionals do their best work by streamlining their velocity planning to help the organization as a whole.</p>
                 <div class="buttons">
                     <button class="minecraft-button" onclick="showPage('vision')">Next: The Vision</button>
@@ -669,20 +680,29 @@
 
         <!-- Vision Page -->
         <div class="page" id="vision">
-            <div style="position: relative; height: 200px; overflow: hidden; margin-bottom: 20px;">
-                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: url('data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 800 200\'><rect width=\'800\' height=\'200\' fill=\'%23a088ff\'/><rect y=\'150\' width=\'800\' height=\'50\' fill=\'%2373a743\'/><rect y=\'160\' width=\'800\' height=\'40\' fill=\'%23866043\'/><rect x=\'50\' y=\'40\' width=\'20\' height=\'20\' fill=\'%23ffffff\' fill-opacity=\'0.9\'/><rect x=\'90\' y=\'30\' width=\'30\' height=\'30\' fill=\'%23ffffff\' fill-opacity=\'0.8\'/><rect x=\'140\' y=\'50\' width=\'15\' height=\'15\' fill=\'%23ffffff\' fill-opacity=\'0.7\'/><rect x=\'600\' y=\'40\' width=\'25\' height=\'25\' fill=\'%23ffffff\' fill-opacity=\'0.8\'/><rect x=\'650\' y=\'60\' width=\'20\' height=\'20\' fill=\'%23ffffff\' fill-opacity=\'0.7\'/><rect x=\'700\' y=\'30\' width=\'30\' height=\'30\' fill=\'%23ffffff\' fill-opacity=\'0.9\'/></svg>'); background-size: cover;"></div>
-                <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;">
-                    <h1 style="font-size: 4em; color: #ffffff; text-shadow: 3px 3px 0 #000, -3px 3px 0 #000, 3px -3px 0 #000, -3px -3px 0 #000; margin: 0; letter-spacing: 3px;">THE VISION</h1>
-                    <p style="font-size: 1.8em; color: #ffffff; text-shadow: 2px 2px 0 #000, -2px 2px 0 #000, 2px -2px 0 #000, -2px -2px 0 #000; margin-top: 5px;">User-Centered Solution</p>
+            <div class="page-header">
+                <div>
+                    <h1 class="page-title">THE VISION</h1>
+                    <p class="page-subtitle">User-Centered Solution</p>
                 </div>
             </div>
 
             <div class="section">
-                <h2>User Personas</h2>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+                <h2 class="section-title">User Personas</h2>
+                <div class="flex-grid-2">
                     <!-- Villager Character -->
-                    <div style="background-color: var(--minecraft-wood); padding: 20px; border: 4px solid #000; border-style: solid; border-width: 4px 4px 4px 4px; border-color: #555 #000 #000 #555; text-align: center; box-shadow: inset 2px 2px 0 rgba(255,255,255,0.2), inset -2px -2px 0 rgba(0,0,0,0.4);">
-                        <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 120'><rect x='35' y='20' width='30' height='40' fill='%23C5885A'/><rect x='30' y='60' width='40' height='30' fill='%23986C3C'/><rect x='25' y='30' width='10' height='20' fill='%23C5885A'/><rect x='65' y='30' width='10' height='20' fill='%23C5885A'/><circle cx='40' cy='40' r='5' fill='%23000'/><circle cx='60' cy='40' r='5' fill='%23000'/><rect x='45' y='50' width='10' height='5' fill='%23000'/><rect x='40' y='90' width='5' height='20' fill='%23986C3C'/><rect x='55' y='90' width='5' height='20' fill='%23986C3C'/></svg>" width="100" height="120" alt="Villager Character">
+                    <div class="team-member">
+                        <svg width="100" height="120" viewBox="0 0 100 120">
+                            <rect x="35" y="20" width="30" height="40" fill="#C5885A"/>
+                            <rect x="30" y="60" width="40" height="30" fill="#986C3C"/>
+                            <rect x="25" y="30" width="10" height="20" fill="#C5885A"/>
+                            <rect x="65" y="30" width="10" height="20" fill="#C5885A"/>
+                            <circle cx="40" cy="40" r="5" fill="#000"/>
+                            <circle cx="60" cy="40" r="5" fill="#000"/>
+                            <rect x="45" y="50" width="10" height="5" fill="#000"/>
+                            <rect x="40" y="90" width="5" height="20" fill="#986C3C"/>
+                            <rect x="55" y="90" width="5" height="20" fill="#986C3C"/>
+                        </svg>
                         <h3>Engineering Manager</h3>
                         <p style="color: #ffff55; text-shadow: 1px 1px 0 #000;">The Villager</p>
                         <p>Can now quickly collect and organize team data to create reliable sprint plans instead of spending hours manually updating spreadsheets.</p>
@@ -692,8 +712,17 @@
                     </div>
 
                     <!-- Enderman Character -->
-                    <div style="background-color: var(--minecraft-wood); padding: 20px; border: 4px solid #000; border-style: solid; border-width: 4px 4px 4px 4px; border-color: #555 #000 #000 #555; text-align: center; box-shadow: inset 2px 2px 0 rgba(255,255,255,0.2), inset -2px -2px 0 rgba(0,0,0,0.4);">
-                        <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 140'><rect x='40' y='20' width='20' height='50' fill='%23000'/><rect x='30' y='30' width='40' height='20' fill='%23000'/><rect x='25' y='70' width='10' height='40' fill='%23000'/><rect x='65' y='70' width='10' height='40' fill='%23000'/><rect x='40' y='110' width='5' height='30' fill='%23000'/><rect x='55' y='110' width='5' height='30' fill='%23000'/><circle cx='35' cy='35' r='4' fill='%23BF00BF'/><circle cx='65' cy='35' r='4' fill='%23BF00BF'/></svg>" width="100" height="140" alt="Enderman Character">
+                    <div class="team-member">
+                        <svg width="100" height="140" viewBox="0 0 100 140">
+                            <rect x="40" y="20" width="20" height="50" fill="#000"/>
+                            <rect x="30" y="30" width="40" height="20" fill="#000"/>
+                            <rect x="25" y="70" width="10" height="40" fill="#000"/>
+                            <rect x="65" y="70" width="10" height="40" fill="#000"/>
+                            <rect x="40" y="110" width="5" height="30" fill="#000"/>
+                            <rect x="55" y="110" width="5" height="30" fill="#000"/>
+                            <circle cx="35" cy="35" r="4" fill="#BF00BF"/>
+                            <circle cx="65" cy="35" r="4" fill="#BF00BF"/>
+                        </svg>
                         <h3>Chief Technology Officer</h3>
                         <p style="color: #ffff55; text-shadow: 1px 1px 0 #000;">The Enderman</p>
                         <p>Gains visibility into sprint workload distribution and can create "what-if" scenarios to better evaluate staffing needs and optimize R&D spending.</p>
@@ -703,8 +732,18 @@
                     </div>
 
                     <!-- Creeper Character -->
-                    <div style="background-color: var(--minecraft-wood); padding: 20px; border: 4px solid #000; border-style: solid; border-width: 4px 4px 4px 4px; border-color: #555 #000 #000 #555; text-align: center; box-shadow: inset 2px 2px 0 rgba(255,255,255,0.2), inset -2px -2px 0 rgba(0,0,0,0.4);">
-                        <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 120'><rect x='35' y='20' width='30' height='60' fill='%2350C878'/><rect x='25' y='40' width='10' height='20' fill='%2350C878'/><rect x='65' y='40' width='10' height='20' fill='%2350C878'/><rect x='35' y='80' width='10' height='20' fill='%2350C878'/><rect x='55' y='80' width='10' height='20' fill='%2350C878'/><circle cx='40' cy='40' r='5' fill='%23000'/><circle cx='60' cy='40' r='5' fill='%23000'/><rect x='45' y='50' width='10' height='5' fill='%23000'/><rect x='45' y='55' width='10' height='5' fill='%23000'/></svg>" width="100" height="120" alt="Creeper Character">
+                    <div class="team-member">
+                        <svg width="100" height="120" viewBox="0 0 100 120">
+                            <rect x="35" y="20" width="30" height="60" fill="#50C878"/>
+                            <rect x="25" y="40" width="10" height="20" fill="#50C878"/>
+                            <rect x="65" y="40" width="10" height="20" fill="#50C878"/>
+                            <rect x="35" y="80" width="10" height="20" fill="#50C878"/>
+                            <rect x="55" y="80" width="10" height="20" fill="#50C878"/>
+                            <circle cx="40" cy="40" r="5" fill="#000"/>
+                            <circle cx="60" cy="40" r="5" fill="#000"/>
+                            <rect x="45" y="50" width="10" height="5" fill="#000"/>
+                            <rect x="45" y="55" width="10" height="5" fill="#000"/>
+                        </svg>
                         <h3>Product Marketing</h3>
                         <p style="color: #ffff55; text-shadow: 1px 1px 0 #000;">The Creeper</p>
                         <p>Obtains reliable product launch timelines without the explosive stress of preparing for key industry events with uncertain delivery dates.</p>
@@ -714,8 +753,18 @@
                     </div>
 
                     <!-- Iron Golem Character -->
-                    <div style="background-color: var(--minecraft-wood); padding: 20px; border: 4px solid #000; border-style: solid; border-width: 4px 4px 4px 4px; border-color: #555 #000 #000 #555; text-align: center; box-shadow: inset 2px 2px 0 rgba(255,255,255,0.2), inset -2px -2px 0 rgba(0,0,0,0.4);">
-                        <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 120'><rect x='30' y='20' width='40' height='30' fill='%23A9A9A9'/><rect x='20' y='50' width='60' height='40' fill='%23A9A9A9'/><rect x='15' y='50' width='5' height='30' fill='%23A9A9A9'/><rect x='80' y='50' width='5' height='30' fill='%23A9A9A9'/><rect x='30' y='90' width='15' height='20' fill='%23A9A9A9'/><rect x='55' y='90' width='15' height='20' fill='%23A9A9A9'/><circle cx='40' cy='35' r='5' fill='%23FF5555'/><circle cx='60' cy='35' r='5' fill='%23FF5555'/><rect x='45' y='45' width='10' height='5' fill='%23000'/></svg>" width="100" height="120" alt="Iron Golem Character">
+                    <div class="team-member">
+                        <svg width="100" height="120" viewBox="0 0 100 120">
+                            <rect x="30" y="20" width="40" height="30" fill="#A9A9A9"/>
+                            <rect x="20" y="50" width="60" height="40" fill="#A9A9A9"/>
+                            <rect x="15" y="50" width="5" height="30" fill="#A9A9A9"/>
+                            <rect x="80" y="50" width="5" height="30" fill="#A9A9A9"/>
+                            <rect x="30" y="90" width="15" height="20" fill="#A9A9A9"/>
+                            <rect x="55" y="90" width="15" height="20" fill="#A9A9A9"/>
+                            <circle cx="40" cy="35" r="5" fill="#FF5555"/>
+                            <circle cx="60" cy="35" r="5" fill="#FF5555"/>
+                            <rect x="45" y="45" width="10" height="5" fill="#000"/>
+                        </svg>
                         <h3>Finance</h3>
                         <p style="color: #ffff55; text-shadow: 1px 1px 0 #000;">The Iron Golem</p>
                         <p>Protects the organization's financial health with reliable forecasts that don't crumble when development timelines slip.</p>
@@ -725,8 +774,18 @@
                     </div>
                     
                     <!-- Zombie Character -->
-                    <div style="background-color: var(--minecraft-wood); padding: 20px; border: 4px solid #000; border-style: solid; border-width: 4px 4px 4px 4px; border-color: #555 #000 #000 #555; text-align: center; box-shadow: inset 2px 2px 0 rgba(255,255,255,0.2), inset -2px -2px 0 rgba(0,0,0,0.4);">
-                        <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 120'><rect x='35' y='20' width='30' height='40' fill='%2362A662'/><rect x='30' y='60' width='40' height='30' fill='%2362A662'/><rect x='25' y='30' width='10' height='20' fill='%2362A662'/><rect x='65' y='30' width='10' height='20' fill='%2362A662'/><circle cx='40' cy='40' r='5' fill='%23000'/><circle cx='60' cy='40' r='5' fill='%23000'/><rect x='45' y='50' width='10' height='5' fill='%23000'/><rect x='40' y='90' width='5' height='20' fill='%2362A662'/><rect x='55' y='90' width='5' height='20' fill='%2362A662'/></svg>" width="100" height="120" alt="Zombie Character">
+                    <div class="team-member">
+                        <svg width="100" height="120" viewBox="0 0 100 120">
+                            <rect x="35" y="20" width="30" height="40" fill="#62A662"/>
+                            <rect x="30" y="60" width="40" height="30" fill="#62A662"/>
+                            <rect x="25" y="30" width="10" height="20" fill="#62A662"/>
+                            <rect x="65" y="30" width="10" height="20" fill="#62A662"/>
+                            <circle cx="40" cy="40" r="5" fill="#000"/>
+                            <circle cx="60" cy="40" r="5" fill="#000"/>
+                            <rect x="45" y="50" width="10" height="5" fill="#000"/>
+                            <rect x="40" y="90" width="5" height="20" fill="#62A662"/>
+                            <rect x="55" y="90" width="5" height="20" fill="#62A662"/>
+                        </svg>
                         <h3>Customer Success</h3>
                         <p style="color: #ffff55; text-shadow: 1px 1px 0 #000;">The Zombie</p>
                         <p>No longer feels like the walking dead when facing customers, armed with reliable feature timeline data to prevent disappointment.</p>
@@ -738,7 +797,7 @@
             </div>
 
             <div class="section">
-                <h2>Organizational Benefits</h2>
+                <h2 class="section-title">Organizational Benefits</h2>
                 <div class="benefits">
                     <div class="benefit-card">
                         <div class="benefit-icon">📊</div>
@@ -764,7 +823,7 @@
             </div>
 
             <div class="section">
-                <h2>Perfect Implementation</h2>
+                <h2 class="section-title">Perfect Implementation</h2>
                 <p>Our perfect implementation transforms velocity planning from a time-consuming manual process into an interactive, collaborative system that empowers all stakeholders.</p>
                 
                 <p>By automating the mundane parts of velocity planning while enabling collaborative scenario planning, we create a solution that elevates the entire organization - engineering managers save valuable time, executives gain visibility, and the business delivers more value more predictably.</p>
@@ -779,16 +838,15 @@
 
         <!-- Problem Statement Page -->
         <div class="page" id="problem">
-            <div style="position: relative; height: 200px; overflow: hidden; margin-bottom: 20px;">
-                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: url('data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 800 200\'><rect width=\'800\' height=\'200\' fill=\'%23330000\'/><rect y=\'100\' width=\'800\' height=\'100\' fill=\'%23e25822\'/><path d=\'M0,100 Q100,80 200,110 T400,90 T600,105 T800,95 L800,200 L0,200 Z\' fill=\'%23f78b31\'/><path d=\'M0,120 Q100,105 200,125 T400,115 T600,130 T800,110 L800,200 L0,200 Z\' fill=\'%23f8a845\'/><path d=\'M0,140 Q80,130 160,150 T320,130 T480,145 T640,135 T800,150 L800,200 L0,200 Z\' fill=\'%23fed45b\'/><rect x=\'50\' y=\'60\' width=\'20\' height=\'20\' fill=\'%23fed45b\'/><rect x=\'350\' y=\'40\' width=\'15\' height=\'15\' fill=\'%23f8a845\'/><rect x=\'600\' y=\'70\' width=\'25\' height=\'25\' fill=\'%23f78b31\'/><rect x=\'200\' y=\'50\' width=\'15\' height=\'15\' fill=\'%23f78b31\'/><rect x=\'500\' y=\'30\' width=\'20\' height=\'20\' fill=\'%23fed45b\'/></svg>'); background-size: cover;"></div>
-                <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;">
-                    <h1 style="font-size: 4em; color: #ffffff; text-shadow: 3px 3px 0 #000, -3px 3px 0 #000, 3px -3px 0 #000, -3px -3px 0 #000; margin: 0; letter-spacing: 3px;">THE PROBLEM</h1>
-                    <p style="font-size: 1.8em; color: #ffffff; text-shadow: 2px 2px 0 #000, -2px 2px 0 #000, 2px -2px 0 #000, -2px -2px 0 #000; margin-top: 5px;">Current Challenges</p>
+            <div class="page-header">
+                <div>
+                    <h1 class="page-title">THE PROBLEM</h1>
+                    <p class="page-subtitle">Current Challenges</p>
                 </div>
             </div>
 
             <div class="section">
-                <h2>Challenge Overview</h2>
+                <h2 class="section-title">Challenge Overview</h2>
                 <div class="storyboard">
                     <div class="story-panel">
                         <h3>Time Consumption</h3>
@@ -822,7 +880,7 @@
             </div>
 
             <div class="section">
-                <h2>Current Process</h2>
+                <h2 class="section-title">Current Process</h2>
                 <p>Here is what a NetDocuments Engineering Manager does currently with the Excel-based velocity planning tool:</p>
                 <ul class="current-process">
                     <li>1. Build the ADO query for the velocity sheet</li>
@@ -854,16 +912,15 @@
 
         <!-- Benefits Page -->
         <div class="page" id="benefits">
-            <div style="position: relative; height: 200px; overflow: hidden; margin-bottom: 20px;">
-                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: url('data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 800 200\'><rect width=\'800\' height=\'200\' fill=\'%23355e3b\'/><rect y=\'150\' width=\'800\' height=\'50\' fill=\'%2373a743\'/><rect y=\'160\' width=\'800\' height=\'40\' fill=\'%23866043\'/><rect x=\'100\' y=\'80\' width=\'50\' height=\'50\' fill=\'%234f7942\'/><rect x=\'100\' y=\'60\' width=\'50\' height=\'20\' fill=\'%2373a743\'/><rect x=\'100\' y=\'130\' width=\'50\' height=\'20\' fill=\'%23866043\'/><rect x=\'400\' y=\'80\' width=\'50\' height=\'50\' fill=\'%234f7942\'/><rect x=\'400\' y=\'60\' width=\'50\' height=\'20\' fill=\'%2373a743\'/><rect x=\'400\' y=\'130\' width=\'50\' height=\'20\' fill=\'%23866043\'/><rect x=\'650\' y=\'80\' width=\'50\' height=\'50\' fill=\'%234f7942\'/><rect x=\'650\' y=\'60\' width=\'50\' height=\'20\' fill=\'%2373a743\'/><rect x=\'650\' y=\'130\' width=\'50\' height=\'20\' fill=\'%23866043\'/><rect x=\'200\' y=\'60\' width=\'25\' height=\'25\' fill=\'%23ffff00\'/><rect x=\'500\' y=\'50\' width=\'25\' height=\'25\' fill=\'%23ffff00\'/><rect x=\'700\' y=\'70\' width=\'25\' height=\'25\' fill=\'%23ffff00\'/><rect x=\'300\' y=\'40\' width=\'25\' height=\'25\' fill=\'%23ffff00\'/></svg>'); background-size: cover;"></div>
-                <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;">
-                    <h1 style="font-size: 4em; color: #ffffff; text-shadow: 3px 3px 0 #000, -3px 3px 0 #000, 3px -3px 0 #000, -3px -3px 0 #000; margin: 0; letter-spacing: 3px;">BENEFITS</h1>
-                    <p style="font-size: 1.8em; color: #ffffff; text-shadow: 2px 2px 0 #000, -2px 2px 0 #000, 2px -2px 0 #000, -2px -2px 0 #000; margin-top: 5px;">Value Creation</p>
+            <div class="page-header">
+                <div>
+                    <h1 class="page-title">BENEFITS</h1>
+                    <p class="page-subtitle">Value Creation</p>
                 </div>
             </div>
 
             <div class="section">
-                <h2>Value Creation</h2>
+                <h2 class="section-title">Value Creation</h2>
                 <div class="benefits">
                     <div class="benefit-card">
                         <div class="benefit-icon">👥</div>
@@ -894,45 +951,43 @@
             </div>
 
             <div class="section">
-                <h2>Benefits Diagram</h2>
-                <div style="display: flex; justify-content: center; margin: 30px 0;">
-                    <div style="position: relative; width: 100%; max-width: 800px; height: 400px;">
-                        <!-- Central node -->
-                        <div style="position: absolute; top: 0; left: 50%; transform: translateX(-50%); z-index: 3; background-color: var(--minecraft-grass); padding: 15px; width: 180px; text-align: center; border: 4px solid #000; border-style: solid; border-width: 4px 4px 4px 4px; border-color: #6faa3a #2d5918 #2d5918 #6faa3a; box-shadow: inset 2px 2px 0 rgba(255,255,255,0.2), inset -2px -2px 0 rgba(0,0,0,0.4);">
-                            <h3 style="color: #ffff55; text-shadow: 1px 1px 0 #000; margin: 0;">Velocity Planning Tool</h3>
-                        </div>
-                        
-                        <!-- Level 1 nodes -->
-                        <div style="position: absolute; top: 100px; left: 50%; transform: translateX(-50%); z-index: 2; width: 80%; display: flex; justify-content: space-between;">
-                            <div style="background-color: var(--minecraft-wood); padding: 15px; width: 180px; text-align: center; border: 4px solid #000; border-style: solid; border-width: 4px 4px 4px 4px; border-color: #b3825c #603b1f #603b1f #b3825c; box-shadow: inset 2px 2px 0 rgba(255,255,255,0.2), inset -2px -2px 0 rgba(0,0,0,0.4);">
-                                <h4 style="color: #ffff55; text-shadow: 1px 1px 0 #000; margin: 0;">Development Team Empowerment</h4>
-                            </div>
-                            <div style="background-color: var(--minecraft-wood); padding: 15px; width: 180px; text-align: center; border: 4px solid #000; border-style: solid; border-width: 4px 4px 4px 4px; border-color: #b3825c #603b1f #603b1f #b3825c; box-shadow: inset 2px 2px 0 rgba(255,255,255,0.2), inset -2px -2px 0 rgba(0,0,0,0.4);">
-                                <h4 style="color: #ffff55; text-shadow: 1px 1px 0 #000; margin: 0;">Increased Delivery Confidence</h4>
-                            </div>
-                        </div>
-                        
-                        <!-- Level 2 nodes -->
-                        <div style="position: absolute; top: 200px; left: 50%; transform: translateX(-50%); z-index: 1; width: 90%; display: flex; justify-content: space-between;">
-                            <div style="background-color: var(--minecraft-wood); padding: 15px; width: 180px; text-align: center; border: 4px solid #000; border-style: solid; border-width: 4px 4px 4px 4px; border-color: #b3825c #603b1f #603b1f #b3825c; box-shadow: inset 2px 2px 0 rgba(255,255,255,0.2), inset -2px -2px 0 rgba(0,0,0,0.4);">
-                                <h4 style="color: #ffff55; text-shadow: 1px 1px 0 #000; margin: 0;">Trustworthiness with Customers</h4>
-                            </div>
-                            <div style="background-color: var(--minecraft-wood); padding: 15px; width: 180px; text-align: center; border: 4px solid #000; border-style: solid; border-width: 4px 4px 4px 4px; border-color: #b3825c #603b1f #603b1f #b3825c; box-shadow: inset 2px 2px 0 rgba(255,255,255,0.2), inset -2px -2px 0 rgba(0,0,0,0.4);">
-                                <h4 style="color: #ffff55; text-shadow: 1px 1px 0 #000; margin: 0;">Maximized R&D Budget</h4>
-                            </div>
-                            <div style="background-color: var(--minecraft-wood); padding: 15px; width: 180px; text-align: center; border: 4px solid #000; border-style: solid; border-width: 4px 4px 4px 4px; border-color: #b3825c #603b1f #603b1f #b3825c; box-shadow: inset 2px 2px 0 rgba(255,255,255,0.2), inset -2px -2px 0 rgba(0,0,0,0.4);">
-                                <h4 style="color: #ffff55; text-shadow: 1px 1px 0 #000; margin: 0;">Maximized Return On Equity</h4>
-                            </div>
-                        </div>
-                        
-                        <!-- Connection lines -->
-                        <div style="position: absolute; top: 65px; left: 50%; transform: translateX(-50%); width: 4px; height: 35px; background-color: var(--minecraft-stone);"></div>
-                        <div style="position: absolute; top: 100px; left: 30%; width: 4px; height: 35px; background-color: var(--minecraft-stone); transform: rotate(45deg); transform-origin: top;"></div>
-                        <div style="position: absolute; top: 100px; left: 70%; width: 4px; height: 35px; background-color: var(--minecraft-stone); transform: rotate(-45deg); transform-origin: top;"></div>
-                        <div style="position: absolute; top: 165px; left: 22%; width: 4px; height: 35px; background-color: var(--minecraft-stone);"></div>
-                        <div style="position: absolute; top: 165px; left: 50%; width: 4px; height: 35px; background-color: var(--minecraft-stone);"></div>
-                        <div style="position: absolute; top: 165px; left: 78%; width: 4px; height: 35px; background-color: var(--minecraft-stone);"></div>
+                <h2 class="section-title">Benefits Diagram</h2>
+                <div style="position: relative; max-width: 800px; height: 400px; margin: 30px auto;">
+                    <!-- Central node -->
+                    <div style="position: absolute; top: 0; left: 50%; transform: translateX(-50%); z-index: 3; background-color: var(--minecraft-grass); padding: 15px; width: 180px; text-align: center; border: 4px solid #000; border-style: solid; border-width: 4px 4px 4px 4px; border-color: #6faa3a #2d5918 #2d5918 #6faa3a; box-shadow: inset 2px 2px 0 rgba(255,255,255,0.2), inset -2px -2px 0 rgba(0,0,0,0.4);">
+                        <h3 style="color: #ffff55; text-shadow: 1px 1px 0 #000; margin: 0;">Velocity Planning Tool</h3>
                     </div>
+                    
+                    <!-- Level 1 nodes -->
+                    <div style="position: absolute; top: 100px; left: 50%; transform: translateX(-50%); z-index: 2; width: 80%; display: flex; justify-content: space-between;">
+                        <div style="background-color: var(--minecraft-wood); padding: 15px; width: 180px; text-align: center; border: 4px solid #000; border-style: solid; border-width: 4px 4px 4px 4px; border-color: #b3825c #603b1f #603b1f #b3825c; box-shadow: inset 2px 2px 0 rgba(255,255,255,0.2), inset -2px -2px 0 rgba(0,0,0,0.4);">
+                            <h4 style="color: #ffff55; text-shadow: 1px 1px 0 #000; margin: 0;">Development Team Empowerment</h4>
+                        </div>
+                        <div style="background-color: var(--minecraft-wood); padding: 15px; width: 180px; text-align: center; border: 4px solid #000; border-style: solid; border-width: 4px 4px 4px 4px; border-color: #b3825c #603b1f #603b1f #b3825c; box-shadow: inset 2px 2px 0 rgba(255,255,255,0.2), inset -2px -2px 0 rgba(0,0,0,0.4);">
+                            <h4 style="color: #ffff55; text-shadow: 1px 1px 0 #000; margin: 0;">Increased Delivery Confidence</h4>
+                        </div>
+                    </div>
+                    
+                    <!-- Level 2 nodes -->
+                    <div style="position: absolute; top: 200px; left: 50%; transform: translateX(-50%); z-index: 1; width: 90%; display: flex; justify-content: space-between;">
+                        <div style="background-color: var(--minecraft-wood); padding: 15px; width: 180px; text-align: center; border: 4px solid #000; border-style: solid; border-width: 4px 4px 4px 4px; border-color: #b3825c #603b1f #603b1f #b3825c; box-shadow: inset 2px 2px 0 rgba(255,255,255,0.2), inset -2px -2px 0 rgba(0,0,0,0.4);">
+                            <h4 style="color: #ffff55; text-shadow: 1px 1px 0 #000; margin: 0;">Trustworthiness with Customers</h4>
+                        </div>
+                        <div style="background-color: var(--minecraft-wood); padding: 15px; width: 180px; text-align: center; border: 4px solid #000; border-style: solid; border-width: 4px 4px 4px 4px; border-color: #b3825c #603b1f #603b1f #b3825c; box-shadow: inset 2px 2px 0 rgba(255,255,255,0.2), inset -2px -2px 0 rgba(0,0,0,0.4);">
+                            <h4 style="color: #ffff55; text-shadow: 1px 1px 0 #000; margin: 0;">Maximized R&D Budget</h4>
+                        </div>
+                        <div style="background-color: var(--minecraft-wood); padding: 15px; width: 180px; text-align: center; border: 4px solid #000; border-style: solid; border-width: 4px 4px 4px 4px; border-color: #b3825c #603b1f #603b1f #b3825c; box-shadow: inset 2px 2px 0 rgba(255,255,255,0.2), inset -2px -2px 0 rgba(0,0,0,0.4);">
+                            <h4 style="color: #ffff55; text-shadow: 1px 1px 0 #000; margin: 0;">Maximized Return On Equity</h4>
+                        </div>
+                    </div>
+                    
+                    <!-- Connection lines -->
+                    <div style="position: absolute; top: 65px; left: 50%; transform: translateX(-50%); width: 4px; height: 35px; background-color: var(--minecraft-stone);"></div>
+                    <div style="position: absolute; top: 100px; left: 30%; width: 4px; height: 35px; background-color: var(--minecraft-stone); transform: rotate(45deg); transform-origin: top;"></div>
+                    <div style="position: absolute; top: 100px; left: 70%; width: 4px; height: 35px; background-color: var(--minecraft-stone); transform: rotate(-45deg); transform-origin: top;"></div>
+                    <div style="position: absolute; top: 165px; left: 22%; width: 4px; height: 35px; background-color: var(--minecraft-stone);"></div>
+                    <div style="position: absolute; top: 165px; left: 50%; width: 4px; height: 35px; background-color: var(--minecraft-stone);"></div>
+                    <div style="position: absolute; top: 165px; left: 78%; width: 4px; height: 35px; background-color: var(--minecraft-stone);"></div>
                 </div>
                 
                 <div class="buttons">
@@ -943,36 +998,35 @@
 
         <!-- Solution Page -->
         <div class="page" id="solution">
-            <div style="position: relative; height: 200px; overflow: hidden; margin-bottom: 20px;">
-                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: url('data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 800 200\'><rect width=\'800\' height=\'200\' fill=\'%230088cc\'/><rect y=\'150\' width=\'800\' height=\'50\' fill=\'%2373a743\'/><rect y=\'160\' width=\'800\' height=\'40\' fill=\'%23866043\'/><rect x=\'300\' y=\'70\' width=\'80\' height=\'60\' fill=\'%23b3b3b3\'/><rect x=\'300\' y=\'60\' width=\'80\' height=\'10\' fill=\'%23d9d9d9\'/><rect x=\'320\' y=\'80\' width=\'15\' height=\'15\' fill=\'%23ffff00\'/><rect x=\'350\' y=\'80\' width=\'15\' height=\'15\' fill=\'%23ffff00\'/><rect x=\'330\' y=\'110\' width=\'20\' height=\'20\' fill=\'%23ff3300\'/><rect x=\'310\' y=\'130\' width=\'60\' height=\'20\' fill=\'%23663300\'/><rect x=\'50\' y=\'65\' width=\'40\' height=\'40\' fill=\'%234d94ff\'/><rect x=\'110\' y=\'45\' width=\'30\' height=\'30\' fill=\'%234d94ff\'/><rect x=\'170\' y=\'75\' width=\'35\' height=\'35\' fill=\'%234d94ff\'/><rect x=\'210\' y=\'55\' width=\'25\' height=\'25\' fill=\'%234d94ff\'/><rect x=\'560\' y=\'65\' width=\'40\' height=\'40\' fill=\'%234d94ff\'/><rect x=\'620\' y=\'45\' width=\'30\' height=\'30\' fill=\'%234d94ff\'/><rect x=\'680\' y=\'75\' width=\'35\' height=\'35\' fill=\'%234d94ff\'/><rect x=\'720\' y=\'55\' width=\'25\' height=\'25\' fill=\'%234d94ff\'/></svg>'); background-size: cover;"></div>
-                <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;">
-                    <h1 style="font-size: 4em; color: #ffffff; text-shadow: 3px 3px 0 #000, -3px 3px 0 #000, 3px -3px 0 #000, -3px -3px 0 #000; margin: 0; letter-spacing: 3px;">OUR SOLUTION</h1>
-                    <p style="font-size: 1.8em; color: #ffffff; text-shadow: 2px 2px 0 #000, -2px 2px 0 #000, 2px -2px 0 #000, -2px -2px 0 #000; margin-top: 5px;">Velocity Planning Reimagined</p>
+            <div class="page-header">
+                <div>
+                    <h1 class="page-title">OUR SOLUTION</h1>
+                    <p class="page-subtitle">Velocity Planning Reimagined</p>
                 </div>
             </div>
 
             <div class="section">
-                <h2>Solution Overview</h2>
+                <h2 class="section-title">Solution Overview</h2>
                 <p>Our velocity planning tool transforms the cumbersome Excel-based planning process into a streamlined, collaborative application that increases confidence, saves time, and creates value across the organization.</p>
                 
-                <div style="display: flex; justify-content: space-between; margin-top: 30px; flex-wrap: wrap; gap: 20px;">
-                    <div style="background-color: rgba(94, 140, 49, 0.2); padding: 15px; border: 4px solid #000; border-style: solid; border-width: 4px 4px 4px 4px; border-color: #555 #000 #000 #555; text-align: center; flex: 1; min-width: 200px;">
-                        <h3 style="color: #ffff55; text-shadow: 1px 1px 0 #000;">ADO Integration</h3>
+                <div class="flex-grid">
+                    <div class="benefit-card" style="flex: 1; min-width: 200px;">
+                        <h3>ADO Integration</h3>
                         <p>Direct connection to Azure DevOps eliminates manual import/export processes</p>
                     </div>
-                    <div style="background-color: rgba(94, 140, 49, 0.2); padding: 15px; border: 4px solid #000; border-style: solid; border-width: 4px 4px 4px 4px; border-color: #555 #000 #000 #555; text-align: center; flex: 1; min-width: 200px;">
-                        <h3 style="color: #ffff55; text-shadow: 1px 1px 0 #000;">Collaborative Planning</h3>
+                    <div class="benefit-card" style="flex: 1; min-width: 200px;">
+                        <h3>Collaborative Planning</h3>
                         <p>Multiple team members can contribute simultaneously</p>
                     </div>
-                    <div style="background-color: rgba(94, 140, 49, 0.2); padding: 15px; border: 4px solid #000; border-style: solid; border-width: 4px 4px 4px 4px; border-color: #555 #000 #000 #555; text-align: center; flex: 1; min-width: 200px;">
-                        <h3 style="color: #ffff55; text-shadow: 1px 1px 0 #000;">Scenario Modeling</h3>
+                    <div class="benefit-card" style="flex: 1; min-width: 200px;">
+                        <h3>Scenario Modeling</h3>
                         <p>Create and compare multiple "What-If" scenarios</p>
                     </div>
                 </div>
             </div>
 
             <div class="section">
-                <h2>Key Features</h2>
+                <h2 class="section-title">Key Features</h2>
                 <div class="benefits">
                     <div class="benefit-card">
                         <h3>Real-Time Data</h3>
@@ -999,16 +1053,15 @@
 
         <!-- Demo Page -->
         <div class="page" id="demo">
-            <div style="position: relative; height: 200px; overflow: hidden; margin-bottom: 20px;">
-                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: url('data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 800 200\'><rect width=\'800\' height=\'200\' fill=\'%233f76e4\'/><rect y=\'150\' width=\'800\' height=\'50\' fill=\'%2373a743\'/><rect y=\'160\' width=\'800\' height=\'40\' fill=\'%23866043\'/><rect x=\'100\' y=\'100\' width=\'50\' height=\'50\' fill=\'%23866043\'/><rect x=\'100\' y=\'50\' width=\'50\' height=\'50\' fill=\'%234f7942\'/><rect x=\'600\' y=\'100\' width=\'50\' height=\'50\' fill=\'%23866043\'/><rect x=\'600\' y=\'50\' width=\'50\' height=\'50\' fill=\'%234f7942\'/><rect x=\'650\' y=\'130\' width=\'100\' height=\'20\' fill=\'%23866043\'/><rect x=\'550\' y=\'130\' width=\'100\' height=\'20\' fill=\'%23866043\'/><rect x=\'50\' y=\'130\' width=\'100\' height=\'20\' fill=\'%23866043\'/><rect x=\'150\' y=\'130\' width=\'100\' height=\'20\' fill=\'%23866043\'/><rect x=\'200\' y=\'110\' width=\'40\' height=\'40\' fill=\'%23866043\'/><rect x=\'200\' y=\'70\' width=\'40\' height=\'40\' fill=\'%234f7942\'/><rect x=\'500\' y=\'110\' width=\'40\' height=\'40\' fill=\'%23866043\'/><rect x=\'500\' y=\'70\' width=\'40\' height=\'40\' fill=\'%234f7942\'/><circle cx=\'300\' cy=\'40\' r=\'20\' fill=\'%23ffffff\'/><circle cx=\'350\' cy=\'50\' r=\'30\' fill=\'%23ffffff\' fill-opacity=\'0.8\'/><circle cx=\'400\' cy=\'30\' r=\'15\' fill=\'%23ffffff\'/><circle cx=\'450\' cy=\'45\' r=\'25\' fill=\'%23ffffff\' fill-opacity=\'0.9\'/></svg>'); background-size: cover;"></div>
-                <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;">
-                    <h1 style="font-size: 4em; color: #ffffff; text-shadow: 3px 3px 0 #000, -3px 3px 0 #000, 3px -3px 0 #000, -3px -3px 0 #000; margin: 0; letter-spacing: 3px;">DEMO</h1>
-                    <p style="font-size: 1.8em; color: #ffffff; text-shadow: 2px 2px 0 #000, -2px 2px 0 #000, 2px -2px 0 #000, -2px -2px 0 #000; margin-top: 5px;">See It In Action</p>
+            <div class="page-header">
+                <div>
+                    <h1 class="page-title">DEMO</h1>
+                    <p class="page-subtitle">See It In Action</p>
                 </div>
             </div>
 
             <div class="section">
-                <h2>Live Demo</h2>
+                <h2 class="section-title">Live Demo</h2>
                 <p>Let's see our solution in action with a demonstration of the key features.</p>
                 <div style="margin: 40px 0; text-align: center;">
                     <div style="display: inline-block; padding: 20px 40px; background-color: rgba(135, 206, 250, 0.3); border: 2px solid #87CEFA; margin-bottom: 30px;">
@@ -1017,7 +1070,7 @@
                     </div>
                 </div>
                 <div class="buttons">
-                    <button class="minecraft-button" onclick="window.alert('Demo would launch here in the actual presentation')">Launch Demo</button>
+                    <button class="minecraft-button" onclick="demoAlert()">Launch Demo</button>
                     <button class="minecraft-button" onclick="showPage('next-steps')">Next: Next Steps</button>
                 </div>
             </div>
@@ -1025,16 +1078,15 @@
 
         <!-- Next Steps Page -->
         <div class="page" id="next-steps">
-            <div style="position: relative; height: 200px; overflow: hidden; margin-bottom: 20px;">
-                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: url('data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 800 200\'><rect width=\'800\' height=\'200\' fill=\'%23221d6b\'/><rect y=\'150\' width=\'800\' height=\'50\' fill=\'%2373a743\'/><rect y=\'160\' width=\'800\' height=\'40\' fill=\'%23866043\'/><circle cx=\'400\' cy=\'50\' r=\'30\' fill=\'%23ffffff\'/><rect x=\'390\' y=\'50\' width=\'20\' height=\'80\' fill=\'%23ffffff\'/><rect x=\'420\' y=\'60\' width=\'50\' height=\'10\' fill=\'%23ffffff\'/><rect x=\'450\' y=\'80\' width=\'30\' height=\'10\' fill=\'%23ffffff\'/><rect x=\'330\' y=\'100\' width=\'50\' height=\'10\' fill=\'%23ffffff\'/><rect x=\'350\' y=\'80\' width=\'30\' height=\'10\' fill=\'%23ffffff\'/><rect x=\'100\' y=\'30\' width=\'3\' height=\'3\' fill=\'%23ffffff\'/><rect x=\'150\' y=\'50\' width=\'2\' height=\'2\' fill=\'%23ffffff\'/><rect x=\'200\' y=\'40\' width=\'4\' height=\'4\' fill=\'%23ffffff\'/><rect x=\'250\' y=\'60\' width=\'3\' height=\'3\' fill=\'%23ffffff\'/><rect x=\'300\' y=\'20\' width=\'2\' height=\'2\' fill=\'%23ffffff\'/><rect x=\'500\' y=\'30\' width=\'3\' height=\'3\' fill=\'%23ffffff\'/><rect x=\'550\' y=\'50\' width=\'2\' height=\'2\' fill=\'%23ffffff\'/><rect x=\'600\' y=\'40\' width=\'4\' height=\'4\' fill=\'%23ffffff\'/><rect x=\'650\' y=\'60\' width=\'3\' height=\'3\' fill=\'%23ffffff\'/><rect x=\'700\' y=\'20\' width=\'2\' height=\'2\' fill=\'%23ffffff\'/></svg>'); background-size: cover;"></div>
-                <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;">
-                    <h1 style="font-size: 4em; color: #ffffff; text-shadow: 3px 3px 0 #000, -3px 3px 0 #000, 3px -3px 0 #000, -3px -3px 0 #000; margin: 0; letter-spacing: 3px;">NEXT STEPS</h1>
-                    <p style="font-size: 1.8em; color: #ffffff; text-shadow: 2px 2px 0 #000, -2px 2px 0 #000, 2px -2px 0 #000, -2px -2px 0 #000; margin-top: 5px;">Future Development</p>
+            <div class="page-header">
+                <div>
+                    <h1 class="page-title">NEXT STEPS</h1>
+                    <p class="page-subtitle">Future Development</p>
                 </div>
             </div>
 
             <div class="section">
-                <h2>Proposed Next Steps</h2>
+                <h2 class="section-title">Proposed Next Steps</h2>
                 <ul style="list-style-type: none;">
                     <li style="margin-bottom: 10px; padding-left: 30px; position: relative;">
                         <span style="position: absolute; left: 0; top: 0; display: inline-block; width: 20px; height: 20px; background-color: var(--minecraft-grass); border: 2px solid #000; margin-right: 10px;"></span>
@@ -1061,63 +1113,201 @@
                          <strong>Milestone 7:</strong> Extended Integrations - Implement parameterized backlog and Snowflake integration
                     </li>
                 </ul>
+                
+                <div class="buttons" style="margin-top: 40px;">
+                    <button class="minecraft-button" onclick="showPage('intro')">Back to Start</button>
+                </div>
             </div>
-
-           
         </div>
     </div>
 
     <script>
-        // Page navigation
+        // Track current page
+        let currentPage = 'intro';
+        
+        // Page navigation with error handling
         function showPage(pageId) {
-            // Hide all pages
-            document.querySelectorAll('.page').forEach(page => {
-                page.classList.remove('active');
-            });
-            
-            // Show selected page
-            document.getElementById(pageId).classList.add('active');
-            
-            // Update progress bar
-            updateProgress(pageId);
-            
-            // Scroll to top
-            window.scrollTo(0, 0);
+            try {
+                // Validate pageId
+                if (!document.getElementById(pageId)) {
+                    console.error("Page ID not found:", pageId);
+                    return;
+                }
+                
+                // Hide all pages
+                document.querySelectorAll('.page').forEach(page => {
+                    page.classList.remove('active');
+                });
+                
+                // Show selected page
+                document.getElementById(pageId).classList.add('active');
+                
+                // Track current page
+                currentPage = pageId;
+                
+                // Update progress bar
+                updateProgress(pageId);
+                
+                // Scroll to top
+                window.scrollTo(0, 0);
+            } catch (error) {
+                console.error("Error in showPage function:", error);
+            }
         }
         
         // Progress bar functionality
         function updateProgress(pageId) {
-            const progressMap = {
-                'intro': 0,
-                'vision': 16,
-                'problem': 32,
-                'benefits': 48,
-                'solution': 64,
-                'demo': 80,
-                'next-steps': 100
-            };
-            
-            const progressFill = document.getElementById('progressFill');
-            progressFill.style.width = progressMap[pageId] + '%';
-            
-            // Update timer text based on percentage
-            const totalSeconds = 420; // 7 minutes
-            const seconds = Math.floor((progressMap[pageId] / 100) * totalSeconds);
-            const minutes = Math.floor(seconds / 60);
-            const remainingSeconds = seconds % 60;
-            
-            document.getElementById('progressText').textContent = 
-                `${minutes}:${remainingSeconds.toString().padStart(2, '0')} / 7:00`;
+            try {
+                const progressMap = {
+                    'intro': 0,
+                    'vision': 16,
+                    'problem': 32,
+                    'benefits': 48,
+                    'solution': 64,
+                    'demo': 80,
+                    'next-steps': 100
+                };
+                
+                const progressFill = document.getElementById('progressFill');
+                if (!progressFill) {
+                    console.error("Progress fill element not found");
+                    return;
+                }
+                
+                const percentage = progressMap[pageId] || 0;
+                progressFill.style.width = percentage + '%';
+                
+                // Update timer text based on percentage
+                const totalSeconds = 420; // 7 minutes
+                const seconds = Math.floor((percentage / 100) * totalSeconds);
+                const minutes = Math.floor(seconds / 60);
+                const remainingSeconds = seconds % 60;
+                
+                const progressText = document.getElementById('progressText');
+                if (progressText) {
+                    progressText.textContent = `${minutes}:${remainingSeconds.toString().padStart(2, '0')} / 7:00`;
+                }
+            } catch (error) {
+                console.error("Error in updateProgress function:", error);
+            }
         }
         
-        // Start presentation from beginning
-        function startPresentation() {
-            showPage('intro');
+        // Demo alert functionality
+        function demoAlert() {
+            try {
+                window.alert('Demo would launch here in the actual presentation');
+            } catch (error) {
+                console.error("Error in demoAlert function:", error);
+            }
+        }
+        
+        // Keyboard navigation
+        document.addEventListener('keydown', function(event) {
+            try {
+                const pages = ['intro', 'vision', 'problem', 'benefits', 'solution', 'demo', 'next-steps'];
+                const currentIndex = pages.indexOf(currentPage);
+                
+                if (currentIndex !== -1) {
+                    // Right arrow or down arrow
+                    if ((event.key === 'ArrowRight' || event.key === 'ArrowDown') && currentIndex < pages.length - 1) {
+                        showPage(pages[currentIndex + 1]);
+                    }
+                    // Left arrow or up arrow
+                    else if ((event.key === 'ArrowLeft' || event.key === 'ArrowUp') && currentIndex > 0) {
+                        showPage(pages[currentIndex - 1]);
+                    }
+                }
+            } catch (error) {
+                console.error("Error in keyboard navigation:", error);
+            }
+        });
+        
+        // Automatically draw clouds
+        function drawClouds() {
+            try {
+                const cloudsElement = document.querySelector('.minecraft-clouds');
+                if (!cloudsElement) return;
+                
+                let cloudHtml = '';
+                for (let i = 0; i < 5; i++) {
+                    const left = Math.random() * 80;
+                    const top = Math.random() * 150;
+                    const width = 30 + Math.random() * 50;
+                    const height = 10 + Math.random() * 15;
+                    const opacity = 0.6 + Math.random() * 0.3;
+                    
+                    cloudHtml += `<div style="position: absolute; left: ${left}%; top: ${top}px; width: ${width}px; height: ${height}px; background-color: rgba(255, 255, 255, ${opacity}); border-radius: 15px;"></div>`;
+                }
+                
+                cloudsElement.innerHTML = cloudHtml;
+            } catch (error) {
+                console.error("Error in drawClouds function:", error);
+            }
+        }
+        
+        // Handle window resize for responsiveness
+        function handleResize() {
+            try {
+                // Adjust layout based on screen size if needed
+                const width = window.innerWidth;
+                const navButtons = document.querySelectorAll('.nav-button');
+                
+                if (width < 768) {
+                    // Mobile layout adjustments
+                    navButtons.forEach(button => {
+                        button.style.margin = '0 0 10px 0';
+                    });
+                } else {
+                    // Desktop layout
+                    navButtons.forEach(button => {
+                        button.style.margin = '0 5px';
+                    });
+                }
+            } catch (error) {
+                console.error("Error in handleResize function:", error);
+            }
         }
         
         // Initialize the presentation
         document.addEventListener('DOMContentLoaded', function() {
-            startPresentation();
+            try {
+                drawClouds();
+                showPage('intro');
+                handleResize();
+                
+                // Add resize event listener
+                window.addEventListener('resize', handleResize);
+                
+                // Set up swipe detection for mobile
+                let touchStartX = 0;
+                let touchEndX = 0;
+                
+                document.addEventListener('touchstart', e => {
+                    touchStartX = e.changedTouches[0].screenX;
+                });
+                
+                document.addEventListener('touchend', e => {
+                    touchEndX = e.changedTouches[0].screenX;
+                    handleSwipe();
+                });
+                
+                function handleSwipe() {
+                    const pages = ['intro', 'vision', 'problem', 'benefits', 'solution', 'demo', 'next-steps'];
+                    const currentIndex = pages.indexOf(currentPage);
+                    
+                    if (touchEndX < touchStartX - 50 && currentIndex < pages.length - 1) {
+                        // Swipe left -> next page
+                        showPage(pages[currentIndex + 1]);
+                    }
+                    
+                    if (touchEndX > touchStartX + 50 && currentIndex > 0) {
+                        // Swipe right -> previous page
+                        showPage(pages[currentIndex - 1]);
+                    }
+                }
+            } catch (error) {
+                console.error("Error in DOMContentLoaded event:", error);
+            }
         });
     </script>
 </body>
