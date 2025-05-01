@@ -706,7 +706,7 @@
         <button class="nav-button" onclick="showPage('vision')">Customers</button>
         <button class="nav-button" onclick="showPage('solution')">Solution</button>
         <button class="nav-button" onclick="showPage('demo')">Demo</button>
-        <button class="nav-button" onclick="showPage('next-steps')">Next Steps</button>
+        <button class="nav-button" onclick="showPage('next-steps')">Roadmap</button>
     </div>
 
     <div class="progress-container">
@@ -812,7 +812,7 @@
                 <h2 class="section-title">Our Mission</h2>
                 <p>We help Engineering Professionals do their best work by streamlining their velocity planning to empower the entire organization.</p>
                 <div class="buttons">
-                    <button class="minecraft-button" onclick="showPage('demo')">Next: Demo</button>
+                    <button class="minecraft-button" onclick="showPage('problem')">Next: Problem</button>
                 </div>
             </div>
         </div>
@@ -1018,7 +1018,7 @@
 
             <div class="section">
                 <div class="buttons">
-                    <button class="minecraft-button" onclick="showPage('problem')">Next: The Problem</button>
+                    <button class="minecraft-button" onclick="showPage('solution')">Next: Solution</button>
                 </div>
             </div>
         </div>
@@ -1098,7 +1098,7 @@
                 </div>
                 
                 <div class="buttons">
-                    <button class="minecraft-button" onclick="showPage('solution')">Next: Solution</button>
+                    <button class="minecraft-button" onclick="showPage('vision')">Next: Customers</button>
                 </div>
             </div>
         </div>
@@ -1232,7 +1232,7 @@
                 </div>
                 <div class="buttons">
                     <button class="minecraft-button" onclick="demoAlert()">Launch Demo</button>
-                    <button class="minecraft-button" onclick="showPage('next-steps')">Next: Next Steps</button>
+                    <button class="minecraft-button" onclick="showPage('next-steps')">Next: Roadmap</button>
                 </div>
             </div>
         </div>
@@ -1249,13 +1249,13 @@
                     <div class="header-decorator" style="left: 450px; top: 80px; width: 30px; height: 10px; opacity: 0.7;"></div>
                 </div>
                 <div>
-                    <h1 class="page-title">NEXT STEPS</h1>
-                    <p class="page-subtitle">Future Development</p>
+                    <h1 class="page-title">ROADMAP</h1>
+                    <p class="page-subtitle">Product Delivery Plan</p>
                 </div>
             </div>
 
             <div class="section">
-                <h2 class="section-title">Proposed Next Steps</h2>
+                <h2 class="section-title">Delivery Milestones</h2>
                 <ul style="list-style-type: none;">
                     <li style="margin-bottom: 10px; padding-left: 30px; position: relative;">
                         <span style="position: absolute; left: 0; top: 0; display: inline-block; width: 20px; height: 20px; background-color: var(--minecraft-grass); border: 2px solid #000; margin-right: 10px;"></span>
@@ -1270,7 +1270,7 @@
                          <strong>Milestone 2.5:</strong> UI/UX Improvements and Performance Enhancements
                     </li>
                     <li style="margin-bottom: 10px; padding-left: 30px; position: relative;">
-                        <span style="position: absolute; left: 0; top: 0; display: inline-block; width: 20px; height: 20px; background-color: #3f76e4; border: 2px solid #000; margin-right: 10px;"></span>
+                        <span style="position: absolute; left: 0; top: 0; display: inline-block; width: 20px; height: 20px; background-color: var(--minecraft-grass); border: 2px solid #000; margin-right: 10px;"></span>
                         <strong>Milestone 3:</strong> What-If Planning - Implement scenario tools to adjust velocity, change epic sizes, and handle vacation periods
                     </li>
                     <li style="margin-bottom: 10px; padding-left: 30px; position: relative;">
@@ -1333,8 +1333,8 @@
             try {
                 const progressMap = {
                     'intro': 0,
-                    'vision': 20,
-                    'problem': 40,
+                    'problem': 20,
+                    'vision': 40,
                     'solution': 60,
                     'demo': 80,
                     'next-steps': 100
@@ -1376,7 +1376,7 @@
         // Keyboard navigation
         document.addEventListener('keydown', function(event) {
             try {
-                const pages = ['intro', 'vision', 'problem', 'solution', 'demo', 'next-steps'];
+                const pages = ['intro', 'problem', 'vision', 'solution', 'demo', 'next-steps'];
                 const currentIndex = pages.indexOf(currentPage);
                 
                 if (currentIndex !== -1) {
@@ -1464,7 +1464,7 @@
                 });
                 
                 function handleSwipe() {
-                    const pages = ['intro', 'vision', 'problem', 'solution', 'demo', 'next-steps'];
+                    const pages = ['intro', 'problem', 'vision', 'solution', 'demo', 'next-steps'];
                     const currentIndex = pages.indexOf(currentPage);
                     
                     if (touchEndX < touchStartX - 50 && currentIndex < pages.length - 1) {
