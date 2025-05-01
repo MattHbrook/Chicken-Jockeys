@@ -47,6 +47,7 @@
             color: #ffffff;
             text-shadow: 1px 1px 0 #000, -1px 1px 0 #000, 1px -1px 0 #000, -1px -1px 0 #000;
             position: relative;
+            font-size: 1.1em;
         }
         
         /* ========== MINECRAFT ENVIRONMENT ========== */
@@ -175,7 +176,7 @@
         
         /* ========== LAYOUT COMPONENTS ========== */
         .container {
-            max-width: 1200px;
+            max-width: 90%;  /* Increased from 1200px fixed width */
             margin: 0 auto;
             padding: 20px;
             position: relative;
@@ -197,6 +198,7 @@
         
         .section p {
             margin-bottom: 20px;
+            font-size: 1.1em;
         }
         
         .section p:last-of-type {
@@ -278,7 +280,7 @@
         }
         
         .page-subtitle {
-            font-size: 1.8em;
+            font-size: 1.9em;
             color: #ffffff;
             text-shadow: 2px 2px 0 #000, -2px 2px 0 #000, 2px -2px 0 #000, -2px -2px 0 #000;
             margin-top: 5px;
@@ -307,7 +309,7 @@
             border-width: 4px 4px 4px 4px;
             border-color: #6faa3a #2d5918 #2d5918 #6faa3a;
             padding: 12px 20px;
-            font-size: 1.2em;
+            font-size: 1.3em;
             cursor: pointer;
             text-transform: uppercase;
             font-weight: normal;
@@ -347,7 +349,7 @@
             image-rendering: pixelated;
             text-transform: uppercase;
             letter-spacing: 1px;
-            font-size: 0.8em;
+            font-size: 0.9em;
             text-shadow: 1px 1px 0 #000;
         }
         
@@ -392,10 +394,15 @@
             margin-bottom: 10px;
             text-shadow: 2px 2px 0 rgba(0,0,0,0.5);
             letter-spacing: 1px;
+            font-size: 1.3em;
+        }
+        
+        .benefit-card p {
+            font-size: 1.1em;
         }
         
         .benefit-icon {
-            font-size: 2em;
+            font-size: 2.1em;
             margin-bottom: 10px;
         }
         
@@ -417,11 +424,17 @@
         .team-member h3 {
             color: #ffff55;
             text-shadow: 1px 1px 0 #000;
+            font-size: 1.3em;
         }
         
         .team-member p {
             color: #ffffff;
             text-shadow: 1px 1px 0 #000;
+            font-size: 1.1em;
+        }
+
+        .team-member div p em {
+            font-size: 1.1em;
         }
         
         .story-panel {
@@ -435,6 +448,11 @@
             color: #6FC0FF;
             text-shadow: 1px 1px 0 #000;
             margin-bottom: 10px;
+            font-size: 1.3em;
+        }
+        
+        .story-panel p {
+            font-size: 1.1em;
         }
         
         .current-process {
@@ -446,6 +464,7 @@
             padding: 10px;
             background-color: rgba(0, 0, 0, 0.3);
             border-left: 3px solid var(--minecraft-gray);
+            font-size: 1.1em;
         }
         
         .buttons {
@@ -466,21 +485,21 @@
         
         .flex-grid-2 {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); /* Increased min width */
             gap: 20px;
             margin-top: 20px;
         }
         
         .storyboard {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); /* Increased min width */
             gap: 20px;
             margin-top: 20px;
         }
         
         .benefits {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Increased min width */
             gap: 20px;
             margin-top: 20px;
         }
@@ -491,6 +510,32 @@
             justify-content: space-around;
             gap: 20px;
             margin-top: 20px;
+        }
+        
+        /* New wider layouts for horizontal screens */
+        @media (min-width: 1400px) {
+            .flex-grid-2 {
+                grid-template-columns: repeat(3, 1fr); /* Force 3 columns on wide screens */
+            }
+            
+            .storyboard {
+                grid-template-columns: repeat(3, 1fr); /* Force 3 columns on wide screens */
+            }
+            
+            .benefits {
+                grid-template-columns: repeat(5, 1fr); /* Force 5 columns on wide screens */
+            }
+            
+            .container {
+                max-width: 85%; /* Even wider container on very wide screens */
+            }
+            
+            /* Two-column layout for content-heavy sections */
+            .two-column-wide {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 30px;
+            }
         }
         
         /* ========== PROGRESS BAR ========== */
@@ -538,6 +583,7 @@
             color: white;
             text-shadow: 1px 1px 0 #000;
             font-weight: bold;
+            font-size: 1.1em;
         }
         
         /* ========== PAGE DISPLAY ========== */
@@ -556,11 +602,11 @@
             }
             
             .page-subtitle {
-                font-size: 1.4em;
+                font-size: 1.5em;
             }
             
             .section-title {
-                font-size: 1.6em;
+                font-size: 1.7em;
             }
             
             .navigation {
@@ -607,7 +653,7 @@
             }
             
             .page-subtitle {
-                font-size: 1.2em;
+                font-size: 1.3em;
             }
             
             .section {
@@ -615,7 +661,7 @@
             }
             
             .section-title {
-                font-size: 1.4em;
+                font-size: 1.5em;
             }
             
             .container {
@@ -624,7 +670,7 @@
             
             .minecraft-button, .nav-button {
                 width: 100%;
-                font-size: 0.9em;
+                font-size: 1em;
             }
         }
     </style>
@@ -743,21 +789,21 @@
                 <h2 class="section-title">Stakeholder Quotes</h2>
                 <div class="flex-grid-2">
                     <div style="background-color: rgba(135, 206, 250, 0.2); padding: 20px; border-left: 4px solid var(--minecraft-water); margin-bottom: 15px;">
-                        <p style="font-style: italic; font-size: 1.1em;">"The velocity planning tool has completely transformed how we forecast our product development timelines. We've reduced planning time by 60% while increasing delivery confidence by 85%. Now leadership trusts our estimates and we can focus on building great products."</p>
-                        <p style="text-align: right; margin-top: 15px; color: #ffff55;">— Sarah Johnson</p>
-                        <p style="text-align: right; margin-top: 5px; font-size: 0.9em;">Engineering Director, Redstone Technologies</p>
+                        <p style="font-style: italic; font-size: 1.1em;">"Visibility of information can improve clarity and confidence for ourselves and customers"</p>
+                        <p style="text-align: right; margin-top: 15px; color: #ffff55;">— Marco Poggio</p>
+                        <p style="text-align: right; margin-top: 5px; font-size: 0.9em;">VP Customer Success</p>
                     </div>
                     
                     <div style="background-color: rgba(135, 206, 250, 0.2); padding: 20px; border-left: 4px solid var(--minecraft-water); margin-bottom: 15px;">
-                        <p style="font-style: italic; font-size: 1.1em;">"As a CTO managing multiple development teams, I needed visibility across all projects without micromanaging. This planning tool provides that perfect balance - team autonomy with enterprise-wide alignment. Our sprint planning meetings are now half as long with twice the clarity."</p>
-                        <p style="text-align: right; margin-top: 15px; color: #ffff55;">— Alex Martinez</p>
-                        <p style="text-align: right; margin-top: 5px; font-size: 0.9em;">Chief Technology Officer, Obsidian Solutions</p>
+                        <p style="font-style: italic; font-size: 1.1em;">"Having a shared, dynamic source of truth to capture the timeline of product delivery will help drive consistency in messaging across the business – and to the market and our customers. My team looks forward to partnering to provide context and guidance around launch timelines to make this tool as valuable as possible to the business."</p>
+                        <p style="text-align: right; margin-top: 15px; color: #ffff55;">— Michael Hill</p>
+                        <p style="text-align: right; margin-top: 5px; font-size: 0.9em;">Director of Product Marketing</p>
                     </div>
                     
                     <div style="background-color: rgba(135, 206, 250, 0.2); padding: 20px; border-left: 4px solid var(--minecraft-water); margin-bottom: 15px;">
-                        <p style="font-style: italic; font-size: 1.1em;">"The what-if scenario planning capability has been a game-changer for our quarterly budget forecasting. We can now have meaningful conversations with Finance about resource allocation based on real data instead of gut feelings."</p>
-                        <p style="text-align: right; margin-top: 15px; color: #ffff55;">— Michael Chang</p>
-                        <p style="text-align: right; margin-top: 5px; font-size: 0.9em;">Product Director, Emerald Systems</p>
+                        <p style="font-style: italic; font-size: 1.1em;">"Higher confidence in development timelines enables ND to start the promotional process earlier which drives more sales earlier in the Go-To-Market launch process."</p>
+                        <p style="text-align: right; margin-top: 15px; color: #ffff55;">— Brooke Kammeyer</p>
+                        <p style="text-align: right; margin-top: 5px; font-size: 0.9em;">Head of Pricing/Packaging</p>
                     </div>
                 </div>
             </div>
@@ -766,7 +812,7 @@
                 <h2 class="section-title">Our Mission</h2>
                 <p>We help Engineering Professionals do their best work by streamlining their velocity planning to empower the entire organization.</p>
                 <div class="buttons">
-                    <button class="minecraft-button" onclick="showPage('vision')">Next: The Vision</button>
+                    <button class="minecraft-button" onclick="showPage('demo')">Next: Demo</button>
                 </div>
             </div>
         </div>
